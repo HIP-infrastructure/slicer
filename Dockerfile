@@ -16,15 +16,19 @@ WORKDIR /apps/${APP_NAME}
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \ 
-    curl -J -O https://download.slicer.org/bitstream/60add706ae4540bf6a89bf98 && \
+    curl libsm6 libxt6 libpulse-mainloop-glib0 libxcb-icccm4 libqt5gui5 && \
+    curl -J -O -L https://download.slicer.org/bitstream/60add706ae4540bf6a89bf98 && \
+    mkdir ./install && \
+    tar xzf Slicer-*-linux-amd64.tar.gz -C ./install && \
+    mv ./install/Slicer-*-linux-amd64 ./install/Slicer && \
     apt-get remove -y --purge curl && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 ENV APP_SHELL="no"
-ENV APP_CMD="sleep 10000"
-ENV PROCESS_NAME="sleep 10000"
+ENV APP_CMD="/apps/${APP_NAME}/install/Slicer/Slicer"
+ENV PROCESS_NAME="Slicer"
 ENV DIR_ARRAY=""
 
 HEALTHCHECK --interval=10s --timeout=10s --retries=5 --start-period=30s \
