@@ -29,7 +29,7 @@ RUN apt-get update && \
 ENV APP_SHELL="no"
 ENV APP_CMD="/apps/${APP_NAME}/install/Slicer/Slicer"
 ENV PROCESS_NAME="Slicer"
-ENV DIR_ARRAY=""
+ENV DIR_ARRAY=".config/NA-MIC"
 
 HEALTHCHECK --interval=10s --timeout=10s --retries=5 --start-period=30s \
   CMD sh -c "/apps/${APP_NAME}/scripts/process-healthcheck.sh \
