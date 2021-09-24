@@ -21,6 +21,7 @@ RUN apt-get update && \
     mkdir ./install && \
     tar xzf Slicer-*-linux-amd64.tar.gz -C ./install && \
     mv ./install/Slicer-*-linux-amd64 ./install/Slicer && \
+    rm Slicer-*-linux-amd64.tar.gz && \
     apt-get remove -y --purge curl && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
