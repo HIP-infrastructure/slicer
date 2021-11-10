@@ -7,9 +7,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG CARD
 ARG CI_REGISTRY
 ARG APP_NAME
-#ARG APP_VERSION
+ARG APP_VERSION
 
-#LABEL app_version=$APP_VERSION
+LABEL app_version=$APP_VERSION
 
 WORKDIR /apps/${APP_NAME}
 
@@ -30,7 +30,8 @@ RUN apt-get update && \
 ENV APP_SHELL="no"
 ENV APP_CMD="/apps/${APP_NAME}/install/Slicer/Slicer"
 ENV PROCESS_NAME="Slicer"
-ENV DIR_ARRAY=".config/NA-MIC"
+ENV APP_DATA_DIR_ARRAY=".config/NA-MIC"
+ENV DATA_DIR_ARRAY=""
 
 HEALTHCHECK --interval=10s --timeout=10s --retries=5 --start-period=30s \
   CMD sh -c "/apps/${APP_NAME}/scripts/process-healthcheck.sh \
