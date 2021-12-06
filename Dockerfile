@@ -17,7 +17,7 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \ 
     curl libsm6 libxt6 libpulse-mainloop-glib0 libxcb-icccm4 libqt5gui5 && \
-    curl -J -O -L https://download.slicer.org/bitstream/60add706ae4540bf6a89bf98 && \
+    curl -JOL# https://download.slicer.org/bitstream/60add706ae4540bf6a89bf98 && \
     mkdir ./install && \
     tar xzf Slicer-*-linux-amd64.tar.gz -C ./install && \
     mv ./install/Slicer-*-linux-amd64 ./install/Slicer && \
