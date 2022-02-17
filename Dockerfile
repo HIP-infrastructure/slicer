@@ -13,21 +13,15 @@ LABEL app_version=$APP_VERSION
 
 WORKDIR /apps/${APP_NAME}
 
-COPY ./apps/${APP_NAME}/Slicer-${APP_VERSION}-linux-amd64.tar.gz .
-
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install --no-install-recommends -y \ 
-    curl libsm6 libxt6 libpulse-mainloop-glib0 libxcb-icccm4 \
-    libqt5gui5 libqt5opengl5 libqt5xml5 libqt5xmlpatterns5 \
-    libqt5svg5 libqt5multimediawidgets5 libqt5x11extras5 \
-    libqt5webengine5 libqt5webenginewidgets5 libqt5script5 \
-    libqt5sql5 libqt5sql5-sqlite && \
-#    curl -JOL# https://download.slicer.org/bitstream/60add706ae4540bf6a89bf98 && \
+    curl libsm6 libxt6 libpulse-mainloop-glib0 libxcb-icccm4 libqt5gui5 && \
+    curl -JOL# https://download.slicer.org/bitstream/60add706ae4540bf6a89bf98 && \
     mkdir ./install && \
-    tar xzf Slicer-${APP_VERSION}-linux-amd64.tar.gz -C ./install && \
-    mv ./install/Slicer-${APP_VERSION}-linux-amd64 ./install/Slicer && \
-    rm Slicer-${APP_VERSION}-linux-amd64.tar.gz && \
+    tar xzf Slicer-*-linux-amd64.tar.gz -C ./install && \
+    mv ./install/Slicer-*-linux-amd64 ./install/Slicer && \
+    rm Slicer-*-linux-amd64.tar.gz && \
     apt-get remove -y --purge curl && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
@@ -35,7 +29,6 @@ RUN apt-get update && \
 
 ENV APP_SHELL="no"
 ENV APP_CMD="/apps/${APP_NAME}/install/Slicer/Slicer"
-#ENV APP_CMD="/apps/${APP_NAME}/install/Slicer/Slicer --launcher-verbose"
 ENV PROCESS_NAME="Slicer"
 ENV APP_DATA_DIR_ARRAY=".config/NA-MIC"
 ENV DATA_DIR_ARRAY=""
