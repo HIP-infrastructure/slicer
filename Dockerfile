@@ -22,7 +22,7 @@ RUN apt-get update && \
     curl libsm6 libxt6 libpulse-mainloop-glib0 libxcb-icccm4 \
     libxdamage1 libnss3 libqt5gui5 libxcomposite1 libxrandr2 \
     libxcursor1 libxi6 libasound2 libgssapi-krb5-2 && \
-    curl -sSJOL https://download.slicer.org/bitstream/62cc52d2aa08d161a31c1af0 && \
+    curl -sSJOL "http://download.slicer.org/download?os=linux&stability=release&version=${APP_VERSION}" && \
     mkdir ./install && \
     tar xzf Slicer-*-linux-amd64.tar.gz -C ./install && \
     mv ./install/Slicer-*-linux-amd64 ./install/Slicer && \
