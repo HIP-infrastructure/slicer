@@ -35,7 +35,7 @@ RUN apt-get update && \
 ENV APP_SPECIAL="no"
 ENV APP_CMD="/apps/${APP_NAME}/install/Slicer/Slicer"
 ENV PROCESS_NAME="Slicer"
-ENV APP_DATA_DIR_ARRAY=".config/NA-MIC"
+ENV APP_DATA_DIR_ARRAY=".config/slicer.org"
 ENV DATA_DIR_ARRAY=""
 
 HEALTHCHECK --interval=10s --timeout=10s --retries=5 --start-period=30s \
