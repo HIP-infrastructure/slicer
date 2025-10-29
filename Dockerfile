@@ -18,15 +18,17 @@ WORKDIR /apps/${APP_NAME}
 
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install --no-install-recommends -y \ 
+    apt-get install --no-install-recommends -y \
     curl libsm6 libxt6 libpulse-mainloop-glib0 libxcb-icccm4 \
     libxdamage1 libnss3 libqt5gui5 libxcomposite1 libxrandr2 \
     libxcursor1 libxi6 libasound2 libgssapi-krb5-2 libgomp1 && \
     curl -sSJOL "http://download.slicer.org/download?os=linux&stability=release&version=${APP_VERSION}" && \
     mkdir ./install && \
-    tar xzf Slicer-*-linux-amd64.tar.gz -C ./install && \
+    tar xzf Slicer-*-linux-amd64.tar.gz --no-same-owner -C ./install && \
     mv ./install/Slicer-*-linux-amd64 ./install/Slicer && \
     rm Slicer-*-linux-amd64.tar.gz && \
+    mkdir -p ./extensions && \
+    curl -sSL "https://slicer-packages.kitware.com/api/v1/item/67c547bd29825655577d157c/download" -o ./extensions/SlicerFreeSurfer.tar.gz && \
     apt-get remove -y --purge curl && \
     apt-get autoremove -y --purge && \
     apt-get clean && \
