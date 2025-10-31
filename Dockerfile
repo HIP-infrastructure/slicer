@@ -27,6 +27,7 @@ RUN apt-get update && \
     tar xzf Slicer-*-linux-amd64.tar.gz --no-same-owner -C ./install && \
     mv ./install/Slicer-*-linux-amd64 ./install/Slicer && \
     rm Slicer-*-linux-amd64.tar.gz && \
+    ./install/Slicer/bin/PythonSlicer -m pip install nibabel && \
     mkdir -p ./extensions && \
     curl -sSL "https://slicer-packages.kitware.com/api/v1/item/67c547bd29825655577d157c/download" -o ./extensions/SlicerFreeSurfer.tar.gz && \
     apt-get remove -y --purge curl && \
